@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<style type="text/css" media="screen">
+.button {
+    font-family: sans-serif;
+    font-size: 20px;
+    display: flex;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    width: 500px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+.button:focus,
+.button:active{
+    border:10px solid red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+</style>
+
+<html>
+    <h1>Ejemplos accesibilidad</h1>
+    <p>Pulsa la tecla tabulador para cambiar entre botones y enter para pulsarlos.</p>
+    <head>
+        <title>
+            Hello
+        </title>
+    </head>
+    <body>
+	<p><u>Elemento &lt;div&gt; seleccionable con tabulador</u></p>
+        <div 
+            class="button"
+	    role="button"
+	    tabindex="0"
+            onclick="showMsg('Div con accesibilidad')"
+            onKeyDown="handleBtnKeyDown(event)"
+>
+            Soy un &lt;div&gt; seleccionable con tabulador
+        </div>
+	<p><u>Elemento &lt;div&gt; no seleccionable con tabulador</u></p>
+        <div
+            class="button"
+            onclick="showMsg('Div sin accesibilidad')">
+            Soy un &lt;div&gt; no seleccionable con tabulador
+        </div>
+	<p><u>Elemento &lt;button&gt;. Por defecto seleccionable con tabulador</u></p>
+	<button 
+            class="button"
+            onclick="showMsg('Button')"
+	    type="button">
+            Soy un &lt;button&gt;
+	</button>
+
+        <script type="application/javascript">
+            function showMsg(item) {
+            alert(item);
+        }
+
+function handleBtnKeyDown(event) {
+  //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role
+  // Check to see if space or enter were pressed
+  if (event.key === " " || event.key === "Enter" || event.key === "Spacebar") { // "Spacebar" for IE11 support
+    showMsg('¡Click con teclado en <div>!');
+  }
+}
+        </script>
+    </body>
+</html>
+
