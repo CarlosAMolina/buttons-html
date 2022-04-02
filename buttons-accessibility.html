@@ -29,6 +29,14 @@
     <body>
         <h1>Ejemplos accesibilidad</h1>
         <p>Pulsa la tecla <b>tabulador</b> para cambiar entre botones y <b>enter</b> para pulsarlos.</p>
+        <p><u>Elemento &lt;div&gt; no seleccionable con tabulador</u></p>
+        <div
+            id="div_no_accessible"
+            class="button"
+            style='background-image: url("square-clipart-3.jpg");'
+            onclick="changeImage('div_no_accessible')"
+        >
+        </div>
         <p><u>Elemento &lt;div&gt; seleccionable con tabulador</u></p>
         <div
             id="div_accessible"
@@ -38,14 +46,6 @@
             style='background-image: url("square-clipart-3.jpg");'
             onclick="changeImage('div_accessible')"
             onKeyDown="handleBtnKeyDown(event, 'div_accessible')"
-        >
-        </div>
-        <p><u>Elemento &lt;div&gt; no seleccionable con tabulador</u></p>
-        <div
-            id="div_no_accessible"
-            class="button"
-            style='background-image: url("square-clipart-3.jpg");'
-            onclick="changeImage('div_no_accessible')"
         >
         </div>
         <p><u>Elemento &lt;button&gt;. Por defecto seleccionable con tabulador</u></p>
