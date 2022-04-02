@@ -1,64 +1,76 @@
 <!DOCTYPE html>
 
 <style type="text/css" media="screen">
-.button {
-    border:1px solid #CCC;
-    background-image: url("square-clipart-3.jpg");
-    background-size: 100% 100%;
-    cursor:pointer;
-    width: 250px;
-    height: 250px;
-}
-.button:focus,
-.button:active{
-    border:10px solid red;
-}
-
+    .button {
+        border:1px solid #CCC;
+        background-size: 100% 100%;
+        cursor:pointer;
+        width: 250px;
+        height: 250px;
+    }
+    .button:focus,
+    .button:active{
+        border:10px solid red;
+    }
 </style>
 
 <html>
-    <h1>Ejemplos accesibilidad</h1>
-    <p>Pulsa la tecla tabulador para cambiar entre botones y enter para pulsarlos.</p>
-    <head>
-        <title>
-            Hello
-        </title>
-    </head>
-    <body>
-	<p><u>Elemento &lt;div&gt; seleccionable con tabulador</u></p>
-        <div 
-            class="button"
-	    role="button"
-	    tabindex="0"
-            onclick="showMsg('Div con accesibilidad')"
-            onKeyDown="handleBtnKeyDown(event)"
->
-        </div>
-	<p><u>Elemento &lt;div&gt; no seleccionable con tabulador</u></p>
-        <div
-            class="button"
-            onclick="showMsg('Div sin accesibilidad')">
-        </div>
-	<p><u>Elemento &lt;button&gt;. Por defecto seleccionable con tabulador</u></p>
-	<button 
-            class="button"
-            onclick="showMsg('Button')"
-	    type="button">
-	</button>
+<h1>Ejemplos accesibilidad</h1>
+<p>Pulsa la tecla tabulador para cambiar entre botones y enter para pulsarlos.</p>
 
-        <script type="application/javascript">
-            function showMsg(item) {
-            alert(item);
+<head>
+    <title>
+        Accesibilidad
+    </title>
+</head>
+
+<body>
+    <p><u>Elemento &lt;div&gt; seleccionable con tabulador</u></p>
+    <div
+        id="div_accessible"
+        class="button"
+        role="button"
+        tabindex="0"
+        style='background-image: url("square-clipart-3.jpg");'
+        onclick="changeImage('div_accessible')"
+        onKeyDown="handleBtnKeyDown(event, 'div_accessible')"
+    >
+    </div>
+    <p><u>Elemento &lt;div&gt; no seleccionable con tabulador</u></p>
+    <div
+        id="div_no_accessible"
+        class="button"
+        style='background-image: url("square-clipart-3.jpg");'
+        onclick="changeImage('div_no_accessible')"
+    >
+    </div>
+    <p><u>Elemento &lt;button&gt;. Por defecto seleccionable con tabulador</u></p>
+    <button
+        id="button"
+        class="button"
+        type="button"
+        style='background-image: url("square-clipart-3.jpg");'
+        onclick="changeImage('button')"
+    >
+    </button>
+
+    <script type="application/javascript">
+        function changeImage(element_id) {
+            if(document.getElementById(element_id).attributes.style.value.indexOf("square-clipart-3.jpg") >= 0) {
+                document.getElementById(element_id).style.backgroundImage = "url('2012-08-21-blockhead.png')";
+            } else {
+                document.getElementById(element_id).style.backgroundImage = "url('square-clipart-3.jpg')";
+            }
         }
 
-function handleBtnKeyDown(event) {
-  //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role
-  // Check to see if space or enter were pressed
-  if (event.key === " " || event.key === "Enter" || event.key === "Spacebar") { // "Spacebar" for IE11 support
-    showMsg('¡Click con teclado en <div>!');
-  }
-}
-        </script>
-    </body>
-</html>
+        function handleBtnKeyDown(event, element_id) {
+          //https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role
+          // Check to see if space or enter were pressed
+          if (event.key === " " || event.key === "Enter" || event.key === "Spacebar") { // "Spacebar" for IE11 support
+            changeImage(element_id);
+          }
+        }
+    </script>
+</body>
 
+</html>
